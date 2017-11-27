@@ -1,0 +1,75 @@
+Aktualni verzi zdrojovych souboru si stahnes prikazem:
+
+    hg clone https://<login>@bitbucket.org/antique/ifj_project/
+
+(za prikazem je jeste mozne doplnit nazev cilove slozky - defaultne ifj_project)
+<login> nahrad loginem, pod kterym se prihlasujes na http://bitbucket.org/
+
+* - veskere dalsi kroky uz probihaji ve slozce kam sis zdrojaky stahnul
+
+
+
+---- Nastaveni ----
+
+Nastaveni Mercurialu je v souboru .hg/hgrc a mel by vypadat takto:
+
+    [paths]
+    default = https://<login>@bitbucket.org/antique/ifj_project/
+
+    [ui]
+    username = <login>
+
+
+
+---- Prikazy Mercurialu ----
+
+prikazy pro praci s repozitarem:
+
+hg addremove -  ulozi zmeny v adresarove strukture projektu, tj pri pridani nebo
+                odebrani souboru je nutne toto pouzit pred hg commit
+
+hg commit - ulozi do repositare zmeny, po zadani prikazu se objevi okno, ve
+            kterem zadas strucny popis provedenych zmen, je mozne taky pouzit
+            hg commit -m "strucny popis". Commit je nutne pouzit pred hg push.
+
+hg push - nahraje zmeny z pocitace do repozitare na bitbucket.org
+
+hg pull - stahne zmeny z repositare na bitbucket.org do pocitace
+
+hg update - uplatni stahnute zmeny, nutne pouzit po hg pull
+
+
+
+---- Postup prace ----
+
+Pred nahranim zmen na server si kazdy stahne aktualni data:
+
+    hg pull
+    hg update
+
+Pak postupne pouzije prikazy pro pridani zmen:
+
+    *(hg addremove)
+    hg commit
+
+A nakonec muze nahrat data na server
+
+    hg push
+
+
+Samozrejmosti je, ze pred zahajenim jakychkoliv uprav si aktualizujes zdrojaky
+
+Do slozky s projektem neukladej zadne dalsi soubory, protoze by jsi je pri
+dalsim hg addremove a hg commit nahral na server. Binarky IJF a IFJ.exe jsou z
+commit vyloucene.
+
+
+---- Instalace Mercurial na tvem PC ----
+
+Na OS Linux a podobnych je zbytecne resit ;-)
+
+Na windows:
+    ze stranky http://mercurial.berkwood.com/ si stahnes aktualni verzi a
+    nainstalujes. Pri dokoncovani instalace je dobre povolit ulozeni cesty k
+    Mercurial do systemove promenne PATH (jinak budes muset hg volat ze slozky
+    kam jsi Mercurial nainstaloval).

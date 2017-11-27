@@ -1,0 +1,6 @@
+var
+a:integer;
+begin
+a := 1000000;
+while a do a := a - 1
+end.
